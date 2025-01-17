@@ -101,3 +101,4 @@ function check_install_docker() {
 }
 
 # Check and install docker
+check_install_docker
