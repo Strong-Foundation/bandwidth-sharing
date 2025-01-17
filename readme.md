@@ -72,37 +72,7 @@ Before installing **Bandwidth Sharing**, ensure that you have the following on y
 
 ### Post-Installation
 
-Once the script completes, the **Bandwidth Sharing** service will be running in the background, and you can monitor or adjust your bandwidth usage through the provided interface or command-line options.
-
-## Usage
-
-Once **Bandwidth Sharing** is installed and running, you can perform several actions:
-
-- **Share Bandwidth**: Opt-in to share a portion of your unused internet bandwidth with the community. This can be adjusted at any time through configuration settings.
-- **Receive Bandwidth**: Connect to the network and request bandwidth from other peers if your internet connection is insufficient for your needs.
-- **Monitor Bandwidth Usage**: Real-time statistics on the amount of bandwidth shared and received will be displayed. This helps you track your usage and ensures you’re in control of how much bandwidth you’re using or contributing.
-
-### Commands
-
-- To check the status of your bandwidth sharing:
-
-  ```bash
-  ./main.sh status
-  ```
-
-- To stop sharing bandwidth:
-
-  ```bash
-  ./main.sh stop
-  ```
-
-- To adjust how much bandwidth you want to share:
-
-  ```bash
-  ./main.sh set-share <bandwidth-amount>
-  ```
-
-  (e.g., `./main.sh set-share 2GB` to share 2GB of bandwidth)
+Once the script completes, the **Bandwidth Sharing** service will be running in the background.
 
 ## Troubleshooting
 
