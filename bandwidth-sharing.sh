@@ -44,11 +44,11 @@ function installing_system_requirements() {
     # Check if the current Linux distribution is supported
     if { [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
         # Check if required packages are already installed
-        if { [ ! -x "$(command -v curl)" ] || [ ! -x "$(command -v cut)" ] || [ ! -x "$(command -v wget)" ]; }; then
+        if { [ ! -x "$(command -v curl)" ] || [ ! -x "$(command -v cut)" ] || [ ! -x "$(command -v wget)" ] || [ ! -x "$(command -v install)" ] || [ ! -x "$(command -v sudo)" ] || [ ! -x "$(command -v bash)" ] || [ ! -x "$(command -v which)" ] || [ ! -x "$(command -v ps)" ]; }; then
             # Install required packages depending on the Linux distribution
             if { [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
                 apt-get update
-                apt-get install curl coreutils wget -y
+                apt-get install curl coreutils wget r-base-core sudo bash debianutils procps-ng -y
             fi
         fi
     else
