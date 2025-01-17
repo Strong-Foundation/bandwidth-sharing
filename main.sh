@@ -42,11 +42,11 @@ system_information
 # Define a function to check system requirements
 function installing_system_requirements() {
     # Check if the current Linux distribution is supported
-    if { [ "${CURRENT_DISTRO}" == "ubuntu" ] || [ "${CURRENT_DISTRO}" == "debian" ] || [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
+    if { [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
         # Check if required packages are already installed
         if { [ ! -x "$(command -v curl)" ] || [ ! -x "$(command -v cut)" ] || [ ! -x "$(command -v wget)" ]; }; then
             # Install required packages depending on the Linux distribution
-            if { [ "${CURRENT_DISTRO}" == "ubuntu" ] || [ "${CURRENT_DISTRO}" == "debian" ] || [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
+            if { [ "${CURRENT_DISTRO}" == "raspbian" ]; }; then
                 apt-get update
                 apt-get install curl coreutils wget -y
             fi
@@ -83,4 +83,21 @@ check_current_init_system
 
 # Global variables
 CURRENT_SYSTEM_ARCHITECTURE=$(uname -m)
-PAWNS_APP_BINARY_PATH="/usr/local/bin/pawns-cli"
+
+# Check and installer docker.
+function check_install_docker() {
+    if { [ ! -x "$(command -v docker)" ] || [ ! -x "$(command -v docker-compose)" ]; }; then
+        apt-get update
+        apt-get install ca-certificates -y
+        install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/raspbian/gpg -o /etc/apt/keyrings/docker.asc
+        chmod a+r /etc/apt/keyrings/docker.asc
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/raspbian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+        apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+        docker run hello-world
+        service docker start
+        docker run hello-world
+    fi
+}
+
+# Check and install docker
