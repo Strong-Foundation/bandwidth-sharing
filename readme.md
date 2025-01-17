@@ -32,13 +32,13 @@ Before installing **Bandwidth Sharing**, ensure that you have the following on y
    Using `wget`:
 
    ```bash
-   wget https://github.com/Strong-Foundation/bandwidth-sharing/raw/main/main.sh
+   wget https://raw.githubusercontent.com/Strong-Foundation/bandwidth-sharing/refs/heads/main/bandwidth-sharing.sh
    ```
 
    Or using `curl`:
 
    ```bash
-   curl -O https://github.com/Strong-Foundation/bandwidth-sharing/raw/main/main.sh
+   curl -O https://raw.githubusercontent.com/Strong-Foundation/bandwidth-sharing/refs/heads/main/bandwidth-sharing.sh
    ```
 
 2. **Make the script executable**:
@@ -46,7 +46,7 @@ Before installing **Bandwidth Sharing**, ensure that you have the following on y
    After downloading, make the script executable with the following command:
 
    ```bash
-   chmod +x main.sh
+   chmod +x bandwidth-sharing.sh
    ```
 
 3. **Run the script**:
@@ -54,7 +54,7 @@ Before installing **Bandwidth Sharing**, ensure that you have the following on y
    Now, run the script to set up and configure everything automatically. The script will guide you through the setup process.
 
    ```bash
-   ./main.sh
+   bash bandwidth-sharing.sh
    ```
 
    The script will:
