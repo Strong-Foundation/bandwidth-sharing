@@ -27,7 +27,7 @@ Before installing **Bandwidth Sharing**, ensure that you have the following on y
 
 1. **Download the installation script**:
 
-   First, you need to download the `main.sh` script. You can do this with either `wget` or `curl`.
+   First, you need to download the `bandwidth-sharing.sh` script. You can do this with either `wget` or `curl`.
 
    Using `wget`:
 
