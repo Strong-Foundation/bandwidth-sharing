@@ -1,2 +1,5 @@
 # Ignore OpenVPN config
 *.ovpn
+
+# Ignore OpenVPN credentials
+*.txt
