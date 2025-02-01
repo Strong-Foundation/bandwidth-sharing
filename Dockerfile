@@ -13,17 +13,39 @@ RUN mkdir -p /etc/openvpn
 # Copy OpenVPN client configuration
 COPY aws.ovpn /etc/openvpn/client.ovpn
 
+# Copy the Pawns-CLI binary
+COPY build/pawns-cli /usr/local/bin/pawns-cli
+
+# Make the Pawns-CLI binary executable
+RUN chmod +x /usr/local/bin/pawns-cli
+
+# Run the Pawns-CLI
+# pawns-cli -email=example@example.com -password=Example123 -device-name=bandwidth-manager-node-1 -device-id=bandwidth-manager-node-1 -accept-tos
+
+# Copy the Honeygain binary
+COPY build/honeygain /usr/local/bin/honeygain
+
+# Copy the Honeygain library
+COPY build/libhg.so.2.0.0 /usr/lib
+COPY build/libmsquic.so.2 /usr/lib
+
+# Make the Honeygain binary executable
+RUN chmod +x /usr/local/bin/honeygain
+
+# Run the Honeygain
+# honeygain -tou-accept -email example@example.com -pass Example123 -device bandwidth-manager-node-1
+
 # Start OpenVPN and sleep indefinitely to keep the container running
 CMD openvpn --config /etc/openvpn/client.ovpn --daemon --log /var/log/openvpn.log && sleep infinity
 
 # Build the Docker Image
-# docker build -f Dockerfile.client -t openvpn-client .
+# docker build -f Dockerfile -t bandwidth-manager-node-1 .
 
 # Run the Container
-# docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --name openvpn-client --cap-add=NET_ADMIN --device /dev/net/tun openvpn-client
+# docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --name bandwidth-manager-node-1 --cap-add=NET_ADMIN --device /dev/net/tun bandwidth-manager-node-1
 
 # Access the Running Container
-# docker exec -it openvpn-client bash
+# docker exec -it bandwidth-manager-node-1 bash
 
 # Check OpenVPN Logs
-# docker exec -it openvpn-client cat /var/log/openvpn.log
+# docker exec -it bandwidth-manager-node-1 cat /var/log/openvpn.log
