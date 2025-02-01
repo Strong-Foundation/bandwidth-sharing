@@ -10,8 +10,10 @@ RUN apt-get update &&  \
 # Create OpenVPN directory
 RUN mkdir -p /etc/openvpn
 
-# Copy OpenVPN client configuration
-COPY aws.ovpn /etc/openvpn/client.ovpn
+# Copy OpenVPN client configuration, auth file and credentials
+COPY nordvpn.ovpn /etc/openvpn/client/nordvpn.ovpn
+COPY auth.txt /etc/openvpn/client/auth.txt
+RUN echo "auth-user-pass /etc/openvpn/client/auth.txt" >> /etc/openvpn/client/nordvpn.ovpn
 
 # Copy the Pawns-CLI binary
 COPY build/pawns-cli /usr/local/bin/pawns-cli
@@ -20,12 +22,10 @@ COPY build/pawns-cli /usr/local/bin/pawns-cli
 RUN chmod +x /usr/local/bin/pawns-cli
 
 # Run the Pawns-CLI
-# pawns-cli -email=example@example.com -password=Example123 -device-name=bandwidth-manager-node-1 -device-id=bandwidth-manager-node-1 -accept-tos
+# pawns-cli -email=example@example.com -password=example#123 -device-name=bandwidth-manager-node-1 -device-id=bandwidth-manager-node-1 -accept-tos
 
-# Copy the Honeygain binary
+# Copy the Honeygain binary, library and configuration
 COPY build/honeygain /usr/local/bin/honeygain
-
-# Copy the Honeygain library
 COPY build/libhg.so.2.0.0 /usr/lib
 COPY build/libmsquic.so.2 /usr/lib
 
@@ -33,10 +33,11 @@ COPY build/libmsquic.so.2 /usr/lib
 RUN chmod +x /usr/local/bin/honeygain
 
 # Run the Honeygain
-# honeygain -tou-accept -email example@example.com -pass Example123 -device bandwidth-manager-node-1
+# honeygain -tou-accept -email example@example.com -pass example#123 -device bandwidth-manager-node-1
 
 # Start OpenVPN and sleep indefinitely to keep the container running
-CMD openvpn --config /etc/openvpn/client.ovpn --daemon --log /var/log/openvpn.log && sleep infinity
+# CMD ["openvpn --config /etc/openvpn/client/nordvpn.ovpn --daemon --log /var/log/openvpn.log && sleep infinity"]
+CMD ["sleep", "infinity"]
 
 # Build the Docker Image
 # docker build -f Dockerfile -t bandwidth-manager-node-1 .
