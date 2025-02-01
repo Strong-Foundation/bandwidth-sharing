@@ -78,7 +78,7 @@ Once the script completes, the **Bandwidth Sharing** service will be running in 
 
 If you encounter any issues during installation or usage, here are some common solutions:
 
-- **Permission Issues**: If the script fails to execute or install due to permission errors, try running the script with `sudo` (e.g., `sudo ./main.sh`).
+- **Permission Issues**: If the script fails to execute or install due to permission errors, try running the script with `sudo` (e.g., `sudo bash bandwidth-sharing.sh`).
 - **Network Issues**: Ensure your internet connection is stable and that you're not behind a restrictive firewall that might block peer-to-peer connections.
 
 - **Service Not Starting**: If the service doesn't start, check if there are any missing dependencies or if the correct ports are open for communication with other peers.
