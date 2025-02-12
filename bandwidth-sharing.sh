@@ -71,7 +71,7 @@ function check_current_init_system() {
     # Define a list of allowed init systems (case-insensitive).
     ALLOWED_INIT_SYSTEMS=("systemd" "sysvinit" "init" "upstart" "bash" "sh")
     # Check if the current init system is in the list of allowed init systems
-    if [[ ! "${ALLOWED_INIT_SYSTEMS[*]}" =~ ${CURRENT_INIT_SYSTEM} ]]; then
+    if [ ! "${ALLOWED_INIT_SYSTEMS[*]}" =~ ${CURRENT_INIT_SYSTEM} ]; then
         # If the init system is not allowed, display an error message and exit with an error code.
         echo "Error: The '${CURRENT_INIT_SYSTEM}' initialization system is not supported. Please stay tuned for future updates."
         exit 1 # Exit the script with an error code.
@@ -95,9 +95,6 @@ function check_install_docker() {
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/raspbian bookworm stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
         apt-get update
         apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-        docker run hello-world
-        service docker start
-        docker run hello-world
     fi
 }
 
