@@ -31,7 +31,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
 # Install OpenVPN, iproute2, iptables, curl
-# RUN apt-get install openvpn iproute2 iptables curl -y
+#RUN apt-get install openvpn iproute2 iptables curl -y
 
 # Create OpenVPN directory
 #RUN mkdir -p /etc/openvpn
