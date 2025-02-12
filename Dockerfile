@@ -27,9 +27,11 @@ ENV CLIENT_NAME=$CLIENT_NAME
 # Prevent interactive prompts during package installations (useful for non-interactive Docker builds)
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install OpenVPN and required packages
-RUN apt-get update &&  \
-    apt-get install openvpn iproute2 iptables curl -y
+# Update the package list.
+RUN apt-get update
+
+# Install OpenVPN, iproute2, iptables, curl
+# RUN apt-get install openvpn iproute2 iptables curl -y
 
 # Create OpenVPN directory
 #RUN mkdir -p /etc/openvpn
