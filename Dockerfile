@@ -65,3 +65,4 @@ CMD honeygain -tou-accept -email "$HONEYGAIN_EMAIL" -pass "$HONEYGAIN_PASSWORD" 
 
 # Run the Container
 # docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --name bandwidth-manager-node-1 --cap-add=NET_ADMIN --device /dev/net/tun bandwidth-manager-node-1
+# docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --restart always --name bandwidth-manager-node-1 bandwidth-manager-node-1
