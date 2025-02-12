@@ -89,6 +89,7 @@ function check_install_docker() {
     if { [ ! -x "$(command -v docker)" ] || [ ! -x "$(command -v docker-compose)" ]; }; then
         apt-get update
         apt-get install ca-certificates -y
+        update-ca-certificates --fresh
         install -m 0755 -d /etc/apt/keyrings
         curl -fsSL https://download.docker.com/linux/raspbian/gpg -o /etc/apt/keyrings/docker.asc
         chmod a+r /etc/apt/keyrings/docker.asc
