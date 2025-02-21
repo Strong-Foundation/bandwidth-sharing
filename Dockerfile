@@ -76,3 +76,7 @@ CMD ["sleep", "infinity"]
 # docker buildx build --platform linux/amd64 -f Dockerfile --build-arg HONEYGAIN_EMAIL="example@example.com" --build-arg HONEYGAIN_PASSWORD="securepass" --build-arg PAWNS_EMAIL="example@example.com" --build-arg PAWNS_PASSWORD="securepass" --build-arg CLIENT_NAME="bandwidth-manager-node-1" -t bandwidth-manager-node-1 --load .
 # Run Docker Build X Build
 # docker run --platform linux/amd64 --dns 1.1.1.1 --dns 1.0.0.1 -d --restart always --name bandwidth-manager-node-1 bandwidth-manager-node-1
+# View Docker logs
+# docker logs bandwidth-manager-node-1
+# Bash into docker
+# docker exec -it bandwidth-manager-node-1 bash
