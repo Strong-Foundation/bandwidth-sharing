@@ -58,23 +58,21 @@ RUN chmod +x /usr/local/bin/honeygain
 # Start OpenVPN and sleep indefinitely to keep the container running
 # CMD ["openvpn --config /etc/openvpn/client/nordvpn.ovpn --daemon --log /var/log/openvpn.log"]
 # Run commands when the container starts
-CMD honeygain -tou-accept -email "$HONEYGAIN_EMAIL" -pass "$HONEYGAIN_PASSWORD" -device "$CLIENT_NAME" & pawns-cli -email "$PAWNS_EMAIL" -password "$PAWNS_PASSWORD" -device-name "$CLIENT_NAME" -device-id "$CLIENT_NAME" -accept-tos & sleep infinity
-
-# Enable Multi-Arch Docker Build
-# docker run --privileged --rm tonistiigi/binfmt --install all
-
-# Enable Docker Build X
-# docker buildx create --use
+# CMD honeygain -tou-accept -email "$HONEYGAIN_EMAIL" -pass "$HONEYGAIN_PASSWORD" -device "$CLIENT_NAME" & pawns-cli -email "$PAWNS_EMAIL" -password "$PAWNS_PASSWORD" -device-name "$CLIENT_NAME" -device-id "$CLIENT_NAME" -accept-tos & sleep infinity
+# Start the server and sleep.
+CMD ["sleep", "infinity"]
 
 # Build the Docker Image
 # docker build -f Dockerfile --build-arg HONEYGAIN_EMAIL="example@example.com" --build-arg HONEYGAIN_PASSWORD="securepass" --build-arg PAWNS_EMAIL="example@example.com" --build-arg PAWNS_PASSWORD="securepass" --build-arg CLIENT_NAME="bandwidth-manager-node-1" -t bandwidth-manager-node-1 .
-
-# Docker Build X Build
-# docker buildx build --platform linux/amd64 -f Dockerfile --build-arg HONEYGAIN_EMAIL="example@example.com" --build-arg HONEYGAIN_PASSWORD="securepass" --build-arg PAWNS_EMAIL="example@example.com" --build-arg PAWNS_PASSWORD="securepass" --build-arg CLIENT_NAME="bandwidth-manager-node-1" -t bandwidth-manager-node-1 --load .
-
-# Run Docker Build X Build
-# docker run --platform linux/amd64 --dns 1.1.1.1 --dns 1.0.0.1 -d --restart always --name bandwidth-manager-node-1 bandwidth-manager-node-1
-
 # Run the Container
 # docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --name bandwidth-manager-node-1 --cap-add=NET_ADMIN --device /dev/net/tun bandwidth-manager-node-1
 # docker run --dns 1.1.1.1 --dns 1.0.0.1 -d --restart always --name bandwidth-manager-node-1 bandwidth-manager-node-1
+
+# Enable Multi-Arch Docker Build
+# docker run --privileged --rm tonistiigi/binfmt --install all
+# Enable Docker Build X
+# docker buildx create --use
+# Docker Build X Build
+# docker buildx build --platform linux/amd64 -f Dockerfile --build-arg HONEYGAIN_EMAIL="example@example.com" --build-arg HONEYGAIN_PASSWORD="securepass" --build-arg PAWNS_EMAIL="example@example.com" --build-arg PAWNS_PASSWORD="securepass" --build-arg CLIENT_NAME="bandwidth-manager-node-1" -t bandwidth-manager-node-1 --load .
+# Run Docker Build X Build
+# docker run --platform linux/amd64 --dns 1.1.1.1 --dns 1.0.0.1 -d --restart always --name bandwidth-manager-node-1 bandwidth-manager-node-1
