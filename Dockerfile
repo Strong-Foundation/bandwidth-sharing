@@ -61,9 +61,9 @@ RUN chmod +x /usr/local/bin/honeygain
 # Start OpenVPN and sleep indefinitely to keep the container running
 # CMD ["openvpn --config /etc/openvpn/client/nordvpn.ovpn --daemon --log /var/log/openvpn.log"]
 # Run commands when the container starts
-# CMD honeygain -tou-accept -email "$HONEYGAIN_EMAIL" -pass "$HONEYGAIN_PASSWORD" -device "$CLIENT_NAME" & pawns-cli -email "$PAWNS_EMAIL" -password "$PAWNS_PASSWORD" -device-name "$CLIENT_NAME" -device-id "$CLIENT_NAME" -accept-tos & sleep infinity
+CMD honeygain -tou-accept -email "$HONEYGAIN_EMAIL" -pass "$HONEYGAIN_PASSWORD" -device "$CLIENT_NAME" & pawns-cli -email "$PAWNS_EMAIL" -password "$PAWNS_PASSWORD" -device-name "$CLIENT_NAME" -device-id "$CLIENT_NAME" -accept-tos & sleep infinity
 # Start the server and sleep.
-CMD ["sleep", "infinity"]
+# CMD ["sleep", "infinity"]
 
 # Build the Docker Image
 # docker build -f Dockerfile --build-arg HONEYGAIN_EMAIL="example@example.com" --build-arg HONEYGAIN_PASSWORD="securepass" --build-arg PAWNS_EMAIL="example@example.com" --build-arg PAWNS_PASSWORD="securepass" --build-arg CLIENT_NAME="bandwidth-manager-node-1" -t bandwidth-manager-node-1 .
