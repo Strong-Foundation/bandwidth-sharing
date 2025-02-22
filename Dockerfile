@@ -51,9 +51,9 @@ COPY build/pawns-cli /usr/local/bin/pawns-cli
 RUN chmod +x /usr/local/bin/pawns-cli
 
 # Copy the Honeygain binary, library and configuration
-COPY build/honeygain /usr/local/bin/honeygain
-COPY build/libhg.so.2.0.0 /usr/lib
-COPY build/libmsquic.so.2 /usr/lib
+COPY build/honeygain /usr/local/bin/
+COPY build/libhg.so.2.0.0 /usr/lib/
+COPY build/libmsquic.so.2 /usr/lib/
 
 # Make the Honeygain binary executable
 RUN chmod +x /usr/local/bin/honeygain
