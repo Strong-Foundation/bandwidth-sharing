@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
 # Install the required pacakges.
-RUN apt-get install ca-certificates -y && update-ca-certificates
+RUN apt-get install ca-certificates supervisor -y && update-ca-certificates
 
 # Install OpenVPN, iproute2, iptables, curl
 #RUN apt-get install openvpn iproute2 iptables curl -y
@@ -35,14 +35,11 @@ COPY build/libmsquic.so.2 /usr/lib/
 # Make the Honeygain binary executable
 RUN chmod +x /usr/local/bin/honeygain
 
-# Copy the service-installer.sh script
-COPY service-installer.sh /usr/local/bin/service-installer.sh
+# Copy supervisord configuration
+COPY supervisord.conf /etc/supervisor/conf.d/
 
-# Make the service-installer.sh script executable
-RUN chmod +x /usr/local/bin/service-installer.sh
-
-# Run the service-installer.sh script
-# RUN bash /usr/local/bin/service-installer.sh
+# Run the supervisord
+# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Start the container.
 CMD ["sleep", "infinity"]
