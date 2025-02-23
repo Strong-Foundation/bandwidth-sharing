@@ -39,10 +39,10 @@ RUN chmod +x /usr/local/bin/honeygain
 COPY supervisord.conf /etc/supervisor/conf.d/
 
 # Run the supervisord
-# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Start the container.
-CMD ["sleep", "infinity"]
+# CMD ["sleep", "infinity"]
 
 # Start OpenVPN and sleep indefinitely to keep the container running
 # CMD ["openvpn --config /etc/openvpn/client/nordvpn.ovpn --daemon --log /var/log/openvpn.log"]
