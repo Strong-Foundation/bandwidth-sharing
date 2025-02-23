@@ -42,7 +42,7 @@ COPY service-installer.sh /usr/local/bin/service-installer.sh
 RUN chmod +x /usr/local/bin/service-installer.sh
 
 # Run the service-installer.sh script
-RUN bash /usr/local/bin/service-installer.sh
+# RUN bash /usr/local/bin/service-installer.sh
 
 # Start the container.
 CMD ["sleep", "infinity"]
