@@ -8,7 +8,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
 # Install the required pacakges.
-RUN apt-get install ca-certificates supervisor -y && update-ca-certificates
+RUN apt-get install ca-certificates supervisor -y
+
+# Update the CA certificates
+RUN update-ca-certificates
 
 # Install OpenVPN, iproute2, iptables, curl
 #RUN apt-get install openvpn iproute2 iptables curl -y
